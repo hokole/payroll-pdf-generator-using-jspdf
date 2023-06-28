@@ -106,6 +106,9 @@
                         <td>
                             <p id="currentTotal"></p>
                         </td>
+                        <td>
+                            <input type="text" id="yeartodate" name="yeartodate">
+                        </td>
                     </tr>
                     <tr>
                         <td>Overtime</td>
@@ -159,15 +162,27 @@
             if (value[0] == '$') {
                 value = value.replace('$', '');
             }
-            if (hours.value == null || hours.value == '') {
-                
+            if (hours.value != null || hours.value != '') {
+                total = parseFloat(value) * parseFloat(hours.value);
+                currentTotal.textContent = total;
             }
-            currentTotal.textContent = value;
+            
         }
 
         function hoursCalc(e) {
             let value = e.target.value;
+            if (parseFloat(value)) {
+                if (rate.value != null || rate.value != '') {
+                    total = parseFloat(value) * parseFloat(removesign(rate.value));
+                    currentTotal.textContent = total;
+                }
+            }
+        }
 
+        function removesign(e) {
+            if(e[0] == '$') {
+                return e.replace('$', '')
+            }
         }
     </script>
 </body>
