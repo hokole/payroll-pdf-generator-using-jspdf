@@ -25,11 +25,69 @@
         <input type="button" value="Convert HTML to PDF" onclick="convertHTMLtoPDF()">
         <div id="divID">
             <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" />
-
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" />
+                <h1>Employee Pay Stub</h1>
+                <div class="heading">
+                    <div class="employer">
+                        <label for="employername"><h3>Employer Name</h3></label>
+                        <input type="text" id="employername" name="employername">
+                        <br>
+                        <label for="employeraddress"><h3>Employer Address</h3></label>
+                        <input type="text" id="employeraddress" name="employeraddress">
+                        <br>
+                        <label for="employername"><h3>Employer Telephone</h3></label>
+                        <input type="text" id="employertelephone" name="employertelephone">
+                        <br>
+                        <label for="employername"><h3>Check #</h3></label>
+                        <input type="text" id="check#" name="check#">
+                        <br>
+                        <label for="employername"><h3>Pay Period</h3></label>
+                        <div class="payperiod">
+                            <input type="text" id="payperiod1" name="payperiod1">
+                            <p>-</p>
+                            <input type="text" id="payperiod2" name="payperiod2">
+                        </div>
+                        
+                    </div>
+                    <div class="employee"> 
+                        <label for="employeename"><h3>Employee Name</h3></label>
+                        <input type="text" id="employeename" name="employeename">
+                        <br>
+                        <label for="employeraddress"><h3>Employee Address</h3></label>
+                        <input type="text" id="employeeaddress" name="employeeaddress">
+                        <br>
+                        <label for="employername"><h3>Employee #</h3></label>
+                        <input type="text" id="employee#" name="employee#">
+                        <br>
+                        <label for="employername"><h3>SSN (Last 4 Digits)</h3></label>
+                        <input type="text" id="ssn" name="ssn">
+                        <br>
+                        <label for="employername"><h3>Pay Date</h3></label>
+                        <input type="text" id="paydate" name="paydate">
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>Gross Earnings</th>
+                        <th>Rate</th>
+                        <th>Hours</th>
+                        <th>Current Total</th>
+                        <th>Year to Date</th>
+                    </tr>
+                    <tr>
+                        <td>Regular</td>
+                        <td>
+                            <input type="text" id="rate" name="rate">
+                            <input type="text" id="hours" name="hours">
+                            <p id="currentTotal"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Overtime</td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                    </tr>
+                </table>
             </form>
         </div>
     </div> <!-- /container -->
@@ -48,7 +106,35 @@
                 x: 12,
                 y: 12
             });
-        }           
+        } 
+        
+        const rate = document.getElementById("rate");
+        const hours = document.getElementById("hours");
+        let currentTotal = document.getElementById('currentTotal');
+
+
+
+        // function rateCalc(rateinp, hoursinp) {
+        //     //check if rate is a number
+        //     if(rateinp[0] == '$') {
+        //         rateinp = rateinp.replace('$', ''); //turns into a decimal str
+        //     } //remove dollar sign to turn into float and calculate hours x rate
+        //     //calculate current Total by rate x hours
+        //     currentTotal = (parseFloat(rateinp) * parseFloat(hoursinp)).toString();
+
+        // }
+
+        rate.addEventListener("change", rateCalc);
+
+        // hours.addEventListener("change", updateValue);
+
+        function rateCalc(e) {
+            let value = e.target.value; //get dollar amount
+            if(value[0] == '$') {
+                value = value.replace('$', '');
+            }
+            currentTotal.textContent = value;
+        }
     </script>
 </body>
 
