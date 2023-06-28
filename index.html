@@ -195,7 +195,41 @@
                     </tr>
                 </table>
                 <br>
-                
+                <div class="bottom">
+                    <div class="current">
+                        <label for="currentgross">
+                            <h3>Current Gross</h3>
+                        </label>
+                        <input type="text" id="currentgross" name="currentgross">
+                        <br>
+                        <label for="currentded">
+                            <h3>Current Deductions</h3>
+                        </label>
+                        <input type="text" id="currentded" name="currentded">
+                        <br>
+                        <label for="currentnp">
+                            <h3>Current Net Pay</h3>
+                        </label>
+                        <input type="text" id="currentnp" name="currentnp">
+
+                    </div>
+                    <div class="ytd">
+                        <label for="ytdgross">
+                            <h3>Year to Date Gross</h3>
+                        </label>
+                        <input type="text" id="ytdgross" name="ytdgross">
+                        <br>
+                        <label for="ytdded">
+                            <h3>Year to Date Deductions</h3>
+                        </label>
+                        <input type="text" id="ytdded" name="ytdded">
+                        <br>
+                        <label for="ytdnp">
+                            <h3>Year to Date Net Pay</h3>
+                        </label>
+                        <input type="text" id="ytdnp" name="ytdnp">
+                    </div>
+                </div>
             </form>
         </div>
     </div> <!-- /container -->
@@ -248,7 +282,7 @@
                 total = parseFloat(value) * parseFloat(hours.value);
                 currentTotal.textContent = total;
             }
-            
+
         }
 
         function hoursCalc(e) {
@@ -262,7 +296,7 @@
         }
 
         function removesign(e) {
-            if(e[0] == '$') {
+            if (e[0] == '$') {
                 return e.replace('$', '')
             }
         }
