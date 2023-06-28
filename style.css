@@ -1,6 +1,7 @@
 body {
     margin: 20px;
     padding: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .container {
@@ -47,4 +48,9 @@ th {
 
 table {
     margin: auto;
+}
+
+#divID {
+    width: 8.5in;
+    height: 11in;
 }
