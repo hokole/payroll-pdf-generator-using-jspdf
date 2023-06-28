@@ -152,14 +152,22 @@
 
         rate.addEventListener("change", rateCalc);
 
-        // hours.addEventListener("change", updateValue);
+        hours.addEventListener("change", hoursCalc);
 
         function rateCalc(e) {
             let value = e.target.value; //get dollar amount
             if (value[0] == '$') {
                 value = value.replace('$', '');
             }
+            if (hours.value == null || hours.value == '') {
+                
+            }
             currentTotal.textContent = value;
+        }
+
+        function hoursCalc(e) {
+            let value = e.target.value;
+
         }
     </script>
 </body>
