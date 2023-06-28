@@ -139,6 +139,7 @@
 
         const rate = document.getElementById("rate");
         const hours = document.getElementById("hours");
+        const yeartodate = document.getElementById("yeartodate");
         let currentTotal = document.getElementById('currentTotal');
 
 
@@ -156,6 +157,8 @@
         rate.addEventListener("change", rateCalc);
 
         hours.addEventListener("change", hoursCalc);
+
+        yeartodate.addEventListener("change", ytdCalc);
 
         function rateCalc(e) {
             let value = e.target.value; //get dollar amount
@@ -182,6 +185,13 @@
         function removesign(e) {
             if(e[0] == '$') {
                 return e.replace('$', '')
+            }
+        }
+
+        function ytdCalc(e) {
+            let val = e.target.value;
+            if (parseFloat(val)) {
+                yeartodate.value = parseFloat(val) + parseFloat(currentTotal.textContent);
             }
         }
     </script>
