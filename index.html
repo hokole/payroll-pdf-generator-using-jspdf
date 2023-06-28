@@ -112,11 +112,90 @@
                     </tr>
                     <tr>
                         <td>Overtime</td>
+                        <td>
+                            <input type="text" id="overtrate" name="rate">
+                        </td>
+                        <td>
+                            <input type="text" id="overthours" name="hours">
+                        </td>
+                        <td>
+                            <p id="overtcurrentTotal"></p>
+                        </td>
+                        <td>
+                            <input type="text" id="overtyeartodate" name="yeartodate">
+                        </td>
                     </tr>
                     <tr>
                         <td>Other</td>
+                        <td>
+                            <input type="text" id="otherrate" name="rate">
+                        </td>
+                        <td>
+                            <input type="text" id="otherhours" name="hours">
+                        </td>
+                        <td>
+                            <p id="othercurrentTotal"></p>
+                        </td>
+                        <td>
+                            <input type="text" id="otheryeartodate" name="yeartodate">
+                        </td>
                     </tr>
                 </table>
+                <br>
+                <table>
+                    <tr>
+                        <th>Deductions</th>
+                        <th>Current Total</th>
+                        <th>Year to Date</th>
+                    </tr>
+                    <tr>
+                        <td>FICA - Medicare</td>
+                        <td>
+                            <p id="medicare"></p>
+                        </td>
+                        <td>
+                            <p id="medicareytd"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FICA - Social Security</td>
+                        <td>
+                            <p id="ss"></p>
+                        </td>
+                        <td>
+                            <p id="ssytd"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Federal Tax</td>
+                        <td>
+                            <p id="fedtax"></p>
+                        </td>
+                        <td>
+                            <p id="fedytd"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State Tax</td>
+                        <td>
+                            <p id="statetax"></p>
+                        </td>
+                        <td>
+                            <p id="stateytd"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td>
+                            <p id="other"></p>
+                        </td>
+                        <td>
+                            <p id="otherytd"></p>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                
             </form>
         </div>
     </div> <!-- /container -->
