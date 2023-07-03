@@ -104,7 +104,7 @@
                             <input type="text" id="hours" name="hours">
                         </td>
                         <td>
-                            <p id="currentTotal"></p>
+                            <input type="text" id="currentTotal" name="currentTotal">
                         </td>
                         <td>
                             <input type="text" id="yeartodate" name="yeartodate">
@@ -119,7 +119,7 @@
                             <input type="text" id="overthours" name="hours">
                         </td>
                         <td>
-                            <p id="overtcurrentTotal"></p>
+                            <input type="text" id="overtcurrentTotal" name="overtcurrentTotal">                            <p id="overtcurrentTotal"></p>
                         </td>
                         <td>
                             <input type="text" id="overtyeartodate" name="yeartodate">
@@ -134,7 +134,7 @@
                             <input type="text" id="otherhours" name="hours">
                         </td>
                         <td>
-                            <p id="othercurrentTotal"></p>
+                            <input type="text" id="othercurrentTotal" name="othercurrentTotal">
                         </td>
                         <td>
                             <input type="text" id="otheryeartodate" name="yeartodate">
@@ -151,19 +151,23 @@
                     <tr>
                         <td>FICA - Medicare</td>
                         <td>
-                            <p id="medicare"></p>
+                            <input type="text" id="medicare" name="ficamedicare">
+                            
                         </td>
                         <td>
-                            <p id="medicareytd"></p>
+                            
+                            <input type="text" id="medicareytd" name="medicareytdname">
                         </td>
                     </tr>
                     <tr>
                         <td>FICA - Social Security</td>
                         <td>
-                            <p id="ss"></p>
+                            <input type="text" id="ss" name="ficass">
+                            
                         </td>
                         <td>
-                            <p id="ssytd"></p>
+                            
+                            <input type="text" id="ssytd" name="ssytdname">
                         </td>
                     </tr>
                     <tr>
@@ -253,6 +257,11 @@
         const rate = document.getElementById("rate");
         const hours = document.getElementById("hours");
         const yeartodate = document.getElementById("yeartodate");
+        const med = document.getElementById('medicare');
+        const ss = document.getElementById('ss');
+        const cg = document.getElementById('currentgross');
+        const cd = document.getElementById('currentded');
+        const cnp = document.getElementById('currentnp');
         let currentTotal = document.getElementById('currentTotal');
 
 
@@ -280,7 +289,13 @@
             }
             if (hours.value != null || hours.value != '') {
                 total = parseFloat(value) * parseFloat(hours.value);
-                currentTotal.textContent = total;
+                currentTotal.value = total;
+                med.value = medCalc(total);
+                ss.value = ssCalc(total);
+                cg.value = total;
+                cdv = medCalc(total) + ssCalc(total)
+                cd.value = cdv;
+                cnp.value = total - cdv;
             }
 
         }
@@ -290,7 +305,13 @@
             if (parseFloat(value)) {
                 if (rate.value != null || rate.value != '') {
                     total = parseFloat(value) * parseFloat(removesign(rate.value));
-                    currentTotal.textContent = total;
+                    currentTotal.value = total;
+                    med.value = medCalc(total);
+                    ss.value = ssCalc(total);
+                    cg.value = total;
+                    cdv = medCalc(total) + ssCalc(total)
+                    cd.value = cdv;
+                    cnp.value = total - cdv;
                 }
             }
         }
@@ -306,6 +327,20 @@
             if (parseFloat(val)) {
                 yeartodate.value = parseFloat(val) + parseFloat(currentTotal.textContent);
             }
+        }
+
+        function medCalc(e) {
+            medicare = e * 0.0145;
+            return medicare
+        }
+
+        function ssCalc(e) {
+            socials = e * 0.062;
+            return socials;
+        }
+
+        function ytdCalc(e) {
+            let val = e.target.value;
         }
     </script>
 </body>
