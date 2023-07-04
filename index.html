@@ -107,7 +107,7 @@
                             <input type="text" id="currentTotal" name="currentTotal">
                         </td>
                         <td>
-                            <input type="text" id="yeartodate" name="yeartodate">
+                            <input type="text" id="yeartodate" name="yeartodatename">
                         </td>
                     </tr>
                     <tr>
@@ -122,7 +122,7 @@
                             <input type="text" id="overtcurrentTotal" name="overtcurrentTotal">                            <p id="overtcurrentTotal"></p>
                         </td>
                         <td>
-                            <input type="text" id="overtyeartodate" name="yeartodate">
+                            <input type="text" id="overtyeartodate" name="overtyeartodate">
                         </td>
                     </tr>
                     <tr>
@@ -137,7 +137,7 @@
                             <input type="text" id="othercurrentTotal" name="othercurrentTotal">
                         </td>
                         <td>
-                            <input type="text" id="otheryeartodate" name="yeartodate">
+                            <input type="text" id="otheryeartodate" name="otheryeartodate">
                         </td>
                     </tr>
                 </table>
@@ -238,111 +238,7 @@
         </div>
     </div> <!-- /container -->
 
-    <script type="text/javascript">
-        function convertHTMLtoPDF() {
-            const { jsPDF } = window.jspdf;
-
-            let doc = new jsPDF('l', 'mm', [1500, 1400]);
-            let pdfjs = document.querySelector('#divID');
-
-            doc.html(pdfjs, {
-                callback: function (doc) {
-                    doc.save("newpdf.pdf");
-                },
-                x: 12,
-                y: 12
-            });
-        }
-
-        const rate = document.getElementById("rate");
-        const hours = document.getElementById("hours");
-        const yeartodate = document.getElementById("yeartodate");
-        const med = document.getElementById('medicare');
-        const ss = document.getElementById('ss');
-        const cg = document.getElementById('currentgross');
-        const cd = document.getElementById('currentded');
-        const cnp = document.getElementById('currentnp');
-        let currentTotal = document.getElementById('currentTotal');
-
-
-
-        // function rateCalc(rateinp, hoursinp) {
-        //     //check if rate is a number
-        //     if(rateinp[0] == '$') {
-        //         rateinp = rateinp.replace('$', ''); //turns into a decimal str
-        //     } //remove dollar sign to turn into float and calculate hours x rate
-        //     //calculate current Total by rate x hours
-        //     currentTotal = (parseFloat(rateinp) * parseFloat(hoursinp)).toString();
-
-        // }
-
-        rate.addEventListener("change", rateCalc);
-
-        hours.addEventListener("change", hoursCalc);
-
-        yeartodate.addEventListener("change", ytdCalc);
-
-        function rateCalc(e) {
-            let value = e.target.value; //get dollar amount
-            if (value[0] == '$') {
-                value = value.replace('$', '');
-            }
-            if (hours.value != null || hours.value != '') {
-                total = parseFloat(value) * parseFloat(hours.value);
-                currentTotal.value = total;
-                med.value = medCalc(total);
-                ss.value = ssCalc(total);
-                cg.value = total;
-                cdv = medCalc(total) + ssCalc(total)
-                cd.value = cdv;
-                cnp.value = total - cdv;
-            }
-
-        }
-
-        function hoursCalc(e) {
-            let value = e.target.value;
-            if (parseFloat(value)) {
-                if (rate.value != null || rate.value != '') {
-                    total = parseFloat(value) * parseFloat(removesign(rate.value));
-                    currentTotal.value = total;
-                    med.value = medCalc(total);
-                    ss.value = ssCalc(total);
-                    cg.value = total;
-                    cdv = medCalc(total) + ssCalc(total)
-                    cd.value = cdv;
-                    cnp.value = total - cdv;
-                }
-            }
-        }
-
-        function removesign(e) {
-            if (e[0] == '$') {
-                return e.replace('$', '')
-            }
-        }
-
-        function ytdCalc(e) {
-            let val = e.target.value;
-            if (parseFloat(val)) {
-                yeartodate.value = parseFloat(val) + parseFloat(currentTotal.textContent);
-            }
-        }
-
-        function medCalc(e) {
-            medicare = e * 0.0145;
-            return medicare
-        }
-
-        function ssCalc(e) {
-            socials = e * 0.062;
-            return socials;
-        }
-
-        function ytdCalc(e) {
-            let val = e.target.value;
-        }
-    </script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>

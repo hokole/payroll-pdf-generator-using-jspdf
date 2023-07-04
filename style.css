@@ -6,6 +6,7 @@ body {
 
 .container {
     margin: auto;
+    background-color: aquamarine;
 }
 
 .heading {
@@ -53,6 +54,8 @@ table {
 #divID {
     width: 8.5in;
     height: 11in;
+    margin:auto;
+    background-color: white;
 }
 
 .bottom {
@@ -60,3 +63,4 @@ table {
     grid-template-columns: auto auto;
     grid-template-rows: auto;
 }
+
