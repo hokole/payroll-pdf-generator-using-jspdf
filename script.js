@@ -1,17 +1,20 @@
 function convertHTMLtoPDF() {
-    const { jsPDF } = window.jspdf;
+    window.jsPDF = window.jspdf.jsPDF;
 
-    let doc = new jsPDF('p', 'in', 'letter');
-    let pdfjs = document.querySelector('#divID');
+    var doc = new jsPDF();
 
-    
+    // Source HTMLElement or a string containing HTML.
+    var elementHTML = document.getElementById("divID");
 
-    doc.html(pdfjs, {
+    doc.html(elementHTML, {
         callback: function (doc) {
-            doc.save("newpdf.pdf");
+            // Save the PDF
+            doc.save('sample-document.pdf');
         },
         x: 0,
-        y: 0
+        y: 0,
+        width: 175, //target width in the PDF document
+        windowWidth: 675 //window width in CSS pixels
     });
 }
 
