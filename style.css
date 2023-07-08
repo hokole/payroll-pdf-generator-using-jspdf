@@ -1,7 +1,8 @@
 body {
     margin: 20px;
     padding: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Helvetica, Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
 }
 
 .container {
@@ -11,7 +12,8 @@ body {
 
 .heading {
     display: grid;
-    grid-template-columns: auto auto;
+
+    grid-template-columns: 4.25in 4.25in;
     grid-template-rows: auto;
 }
 
@@ -37,6 +39,7 @@ th {
 .heading h3 {
     padding: 5px;
     margin: 5px;
+
 }
 
 .employer {
@@ -64,3 +67,28 @@ table {
     grid-template-rows: auto;
 }
 
+h1 {
+    margin: auto;
+    text-align: center;
+    font-size: 16px;
+    padding-top: 1in;
+    padding-bottom: 0.25in;
+}
+
+label {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.PI {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.employer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
