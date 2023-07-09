@@ -121,6 +121,7 @@ label {
 .earnings input {
     width: 90%;
     margin: 0;
+    border: 0;
 }
 
 #employeraddress {
@@ -171,4 +172,32 @@ table, td, th {
 
 .deductytd {
     width: 12.5%;
+}
+
+.deduct input {
+    border: 0;
+}
+
+.current {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: calc(3.25in - 20px);
+    padding-right: 20px;
+}
+
+.ytd {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: calc(3.25in - 20px);
+    padding-left: 20px;
+}
+
+input {
+    border: 1px solid black;
+}
+
+textarea {
+    border: 1px solid black;
 }

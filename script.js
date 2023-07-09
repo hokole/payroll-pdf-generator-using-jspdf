@@ -32,6 +32,8 @@ const ssytd = document.getElementById("ssytd");
 const ytdgross = document.getElementById('ytdgross');
 const ytdded = document.getElementById('ytdded');
 const ytdnp = document.getElementById('ytdnp');
+const fedtax = document.getElementById('fedtax');
+const fedytd = document.getElementById('fedytd');
 
 rate.addEventListener("change", rateCalc);
 
@@ -43,6 +45,8 @@ medytd.addEventListener('change', medytdCalc);
 
 ssytd.addEventListener('change', ssytdCalc);
 
+fedytd.addEventListener('change', fedytdCalc);
+
 function rateCalc(e) {
     let value = e.target.value; //get dollar amount
     if (value[0] == '$') {
@@ -53,10 +57,12 @@ function rateCalc(e) {
         currentTotal.value = total;
         med.value = medCalc(total);
         ss.value = ssCalc(total);
+        fedtax.value = fedCalc(total);
         cg.value = total;
         cdv = medCalc(total) + ssCalc(total);
         cd.value = cdv;
         cnp.value = total - cdv;
+
     }
 
 }
@@ -69,6 +75,7 @@ function hoursCalc(e) {
             currentTotal.value = total;
             med.value = medCalc(total);
             ss.value = ssCalc(total);
+            fedtax.value = fedCalc(total);
             cg.value = total;
             cdv = medCalc(total) + ssCalc(total);
             cd.value = cdv;
@@ -89,6 +96,9 @@ function medytdCalc(e) {
     if (ssytd.value != null || ssytd.value != '') {
         ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value);
         ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+    } else if ((ssytd.value != null || ssytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
+        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
+        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
     }
 }
 
@@ -98,10 +108,20 @@ function ssytdCalc(e) {
     if (medytd.value != null || medytd.value != '') {
         ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value);
         ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+    } else if ((medytd.value != null || medytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
+        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
+        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
     }
 }
 
-
+function fedytdCalc(e) {
+    let value = e.target.value;
+    fedytd.value = parseFloat(value) + parseFloat(fedtax.value);
+    if ((medytd.value != null || medytd.value != '') && (ssytd.value != null || ssytd.value != '')) {
+        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
+        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+    } 
+}
 
 function removesign(e) {
     if (e[0] == '$') {
@@ -117,4 +137,9 @@ function medCalc(e) {
 function ssCalc(e) {
     socials = e * 0.062;
     return socials;
+}
+
+function fedCalc(e) {
+    fed = e * 0.08;
+    return fed;
 }
