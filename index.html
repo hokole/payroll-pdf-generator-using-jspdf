@@ -19,11 +19,14 @@
 </head>
 
 <body>
-
-
+    <h1>Generate Employee Pay Stub for Payroll!</h1>
+    <p>Generate an employee pay stub for payroll to PDF. <br>
+        Must add rate and hours. <br>
+        Do not add $ signs as it will automatically them for you. <br>
+        The year to date is calculated by adding the past pay stub's year to date.</p>
     <div class="container">
-
-        <input type="button" value="Convert HTML to PDF" onclick="convertHTMLtoPDF()">
+        <div class="buttondiv">
+        <input class='button' type="button" value="Convert HTML to PDF" onclick="convertHTMLtoPDF()"></div>
         <div id="divID">
             <form>
                 <h1>Employee Pay Stub</h1>
