@@ -12,15 +12,23 @@ body {
 
 .heading {
     display: grid;
-
-    grid-template-columns: 4.25in 4.25in;
-    grid-template-rows: auto;
+    font-size: 14px;
+    grid-template-columns: 3.25in 3.25in;
 }
 
 .payperiod {
     display: grid;
-    grid-template-columns: 125px 75px 125px;
+    grid-template-columns: 141px 10px 141px;
     grid-template-rows: auto;
+    width: 3.25in;
+}
+
+#payperiod1 {
+    width: 131px;
+}
+
+#payperiod2 {
+    width: 131px;
 }
 
 tr {
@@ -36,18 +44,23 @@ th {
     margin: auto;
 }
 
-.heading h3 {
-    padding: 5px;
-    margin: 5px;
+.employer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-right: 20px;
 
 }
 
-.employer {
-    margin: auto;
+.heading input {
+    width: 292px;
+    margin-bottom: 2px;
 }
 
 .employee {
     margin: auto;
+    padding-left: 20px;
 }
 
 table {
@@ -59,6 +72,7 @@ table {
     height: 11in;
     margin:auto;
     background-color: white;
+    
 }
 
 .bottom {
@@ -79,6 +93,7 @@ label {
     padding: 0;
     margin: 0;
     font-weight: bold;
+    font-size: 14px;
 }
 
 .PI {
@@ -87,8 +102,73 @@ label {
     flex-wrap: wrap;
 }
 
-.employer {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+
+.container2 {
+    padding: 0 1in 1in 1in;
+    width: 6.5in
+}
+
+.earnings {
+    width: 6.5in;
+    font-size: 14px;
+}
+
+.deduct {
+    width: 6.5in;
+    font-size: 14px;
+}
+
+.earnings input {
+    width: 90%;
+    margin: 0;
+}
+
+#employeraddress {
+    height: 1in;
+    width: 292px;
+}
+
+#employeeaddress {
+    height: 1in;
+    width: 292px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid;
+  }
+
+.grossearnings {
+    width: 25%
+}
+
+.earningsrate {
+    width: 12.5%;
+}
+
+.earningshours {
+    width: 12.5%;
+}
+
+.earningscurrenttotal {
+    width: 25%;
+}
+
+.earningsytd {
+    width: 25%;
+}
+
+.deductionsdeduct {
+    width: 75%;
+}
+
+.deductcurrenttotal {
+    width: 12.5%;
+}
+
+.deductytd {
+    width: 12.5%;
 }

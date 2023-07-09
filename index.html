@@ -27,8 +27,10 @@
         <div id="divID">
             <form>
                 <h1>Employee Pay Stub</h1>
+                <div class="container2">
                 <div class="heading">
                     <div class="employer">
+
                         <label for="employername">
                             Employer Name
                         </label>
@@ -37,7 +39,7 @@
                         <label for="employeraddress">
                             Employer Address
                         </label>
-                        <input type="text" id="employeraddress" name="employeraddress">
+                        <textarea type="text" id="employeraddress" name="employeraddress"></textarea>
                         <br>
                         <label for="employername">
                             Employer Telephone
@@ -70,7 +72,9 @@
                         <label for="employeraddress">
                             Employee Address
                         </label>
-                        <input type="text" id="employeeaddress" name="employeeaddress"></div>
+                        <textarea type="text" id="employeeaddress" name="employeeaddress">
+                            </textarea>
+                        </div>
                         <br>
                         <div class="PI">
                         <label for="employername">
@@ -92,13 +96,13 @@
                     </div>
                 </div>
                 <br>
-                <table>
+                <table class="earnings">
                     <tr>
-                        <th>Gross Earnings</th>
-                        <th>Rate</th>
-                        <th>Hours</th>
-                        <th>Current Total</th>
-                        <th>Year to Date</th>
+                        <th class="grossearnings">Gross Earnings</th>
+                        <th class="earningsrate">Rate</th>
+                        <th class="earningshours">Hours</th>
+                        <th class="earningscurrenttotal">Current Total</th>
+                        <th class="earningsytd">Year to Date</th>
                     </tr>
                     <tr>
                         <td>Regular</td>
@@ -148,11 +152,11 @@
                     </tr>
                 </table>
                 <br>
-                <table>
+                <table class="deduct">
                     <tr>
-                        <th>Deductions</th>
-                        <th>Current Total</th>
-                        <th>Year to Date</th>
+                        <th class="deductionsdeduct">Deductions</th>
+                        <th class="deductcurrentotal">Current Total</th>
+                        <th class="deductytd">Year to Date</th>
                     </tr>
                     <tr>
                         <td>FICA - Medicare</td>
@@ -208,39 +212,40 @@
                 <div class="bottom">
                     <div class="current">
                         <label for="currentgross">
-                            Current Gross<
+                            Current Gross
                         </label>
                         <input type="text" id="currentgross" name="currentgross">
                         <br>
                         <label for="currentded">
-                            Current Deductions<
+                            Current Deductions
                         </label>
                         <input type="text" id="currentded" name="currentded">
                         <br>
                         <label for="currentnp">
-                            Current Net Pay<
+                            Current Net Pay
                         </label>
                         <input type="text" id="currentnp" name="currentnp">
 
                     </div>
                     <div class="ytd">
                         <label for="ytdgross">
-                            Year to Date Gross<
+                            Year to Date Gross
                         </label>
                         <input type="text" id="ytdgross" name="ytdgross">
                         <br>
                         <label for="ytdded">
-                            Year to Date Deductions<
+                            Year to Date Deductions
                         </label>
                         <input type="text" id="ytdded" name="ytdded">
                         <br>
                         <label for="ytdnp">
-                            Year to Date Net Pay<
+                            Year to Date Net Pay
                         </label>
                         <input type="text" id="ytdnp" name="ytdnp">
                     </div>
                 </div>
             </form>
+            </div>
         </div>
     </div> <!-- /container -->
 
