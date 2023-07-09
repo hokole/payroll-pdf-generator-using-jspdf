@@ -47,22 +47,17 @@ ssytd.addEventListener('change', ssytdCalc);
 
 fedytd.addEventListener('change', fedytdCalc);
 
+let USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 function rateCalc(e) {
     let value = e.target.value; //get dollar amount
-    if (value[0] == '$') {
-        value = value.replace('$', '');
-    }
+    rate.value = USDollar.format(value);
     if (hours.value != null || hours.value != '') {
         total = parseFloat(value) * parseFloat(hours.value);
-        currentTotal.value = total;
-        med.value = medCalc(total);
-        ss.value = ssCalc(total);
-        fedtax.value = fedCalc(total);
-        cg.value = total;
-        cdv = medCalc(total) + ssCalc(total);
-        cd.value = cdv;
-        cnp.value = total - cdv;
-
+        Calc();
     }
 
 }
@@ -72,30 +67,22 @@ function hoursCalc(e) {
     if (parseFloat(value)) {
         if (rate.value != null || rate.value != '') {
             total = parseFloat(value) * parseFloat(removesign(rate.value));
-            currentTotal.value = total;
-            med.value = medCalc(total);
-            ss.value = ssCalc(total);
-            fedtax.value = fedCalc(total);
-            cg.value = total;
-            cdv = medCalc(total) + ssCalc(total);
-            cd.value = cdv;
-            cnp.value = total - cdv;
+            Calc();
         }
     }
 }
 
 function regytdCalc(e) {
     let value = e.target.value;
-    yeartodate.value = parseFloat(value) + parseFloat(currentTotal.value);
+    yeartodate.value = USDollar.format(parseFloat(value) + parseFloat(removesign(currentTotal.value)));
     ytdgross.value = yeartodate.value;
 }
 
 function medytdCalc(e) {
     let value = e.target.value;
-    medytd.value = parseFloat(value) + parseFloat(med.value);
+    medytd.value = USDollar.format(parseFloat(value) + parseFloat(removesign(med.value)));
     if (ssytd.value != null || ssytd.value != '') {
-        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value);
-        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+        deductCalc();
     } else if ((ssytd.value != null || ssytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
         ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
         ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
@@ -104,10 +91,9 @@ function medytdCalc(e) {
 
 function ssytdCalc(e) {
     let value = e.target.value;
-    ssytd.value = parseFloat(value) + parseFloat(ss.value);
+    ssytd.value = USDollar.format(parseFloat(value) + parseFloat(removesign(ss.value)));
     if (medytd.value != null || medytd.value != '') {
-        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value);
-        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+        deductCalc();
     } else if ((medytd.value != null || medytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
         ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
         ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
@@ -117,16 +103,10 @@ function ssytdCalc(e) {
 function fedytdCalc(e) {
     let value = e.target.value;
     fedytd.value = parseFloat(value) + parseFloat(fedtax.value);
-    if ((medytd.value != null || medytd.value != '') && (ssytd.value != null || ssytd.value != '')) {
-        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
-        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+    if ((medytd.value != null || medytd.value != '') && (ssytd.value != null || ssytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
+        ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(fedytd.value));
+        ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
     } 
-}
-
-function removesign(e) {
-    if (e[0] == '$') {
-        return e.replace('$', '');
-    }
 }
 
 function medCalc(e) {
@@ -142,4 +122,26 @@ function ssCalc(e) {
 function fedCalc(e) {
     fed = e * 0.08;
     return fed;
+}
+
+function Calc() {
+    currentTotal.value = USDollar.format(total);
+    med.value = USDollar.format(medCalc(total));
+    ss.value = USDollar.format(ssCalc(total));
+    fedtax.value = USDollar.format(fedCalc(total));
+    cg.value = USDollar.format(total);
+    cdv = medCalc(total) + ssCalc(total);
+    cd.value = USDollar.format(cdv);
+    cnp.value = USDollar.format(total - cdv);
+}
+
+function deductCalc() {
+    ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)));
+    ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
+}
+
+function removesign(e) {
+    result = e.replace(/\$/g, '');
+    result = result.replaceAll(',', '');
+    return result;
 }
