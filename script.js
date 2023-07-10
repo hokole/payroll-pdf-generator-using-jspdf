@@ -47,18 +47,37 @@ ssytd.addEventListener('change', ssytdCalc);
 
 fedytd.addEventListener('change', fedytdCalc);
 
+currentTotal.addEventListener('change', currenttotalCalc);
+
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
 });
 
+function currenttotalCalc(e) {
+    let value = e.target.value;
+    if (rate.value == 'SALARY') {
+        if (parseFloat(value) || Number.isInteger(value)) {
+            currentTotal.value = USDollar.format(parseFloat(value));
+        }
+        cg.value = currentTotal.value;
+        med.value = USDollar.format(medCalc(value));
+        ss.value = USDollar.format(ssCalc(value));
+        // fedtax.value = USDollar.format(fedCalc(value));
+        cd.value = USDollar.format(medCalc(value) + ssCalc(value));
+        cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value);
+        cnp.value = USDollar.format(cdvctt);
+}}
+
 function rateCalc(e) {
     let value = e.target.value; //get dollar amount
-    rate.value = USDollar.format(value);
-    if (hours.value != null || hours.value != '') {
-        total = parseFloat(value) * parseFloat(hours.value);
-        Calc();
-    }
+    if (value == parseFloat(value)) {
+        rate.value = USDollar.format(value);
+        if (hours.value != null || hours.value != '') {
+            total = parseFloat(value) * parseFloat(hours.value);
+            Calc();
+        }
+    } 
 
 }
 
