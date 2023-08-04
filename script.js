@@ -134,6 +134,7 @@ function fedytdCalc(e) {
         ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(fedytd.value));
         ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
     }
+    deductCalc();
 }
 
 function medCalc(e) {
@@ -165,7 +166,7 @@ function Calc() {
 function deductCalc() {
     if (fedtax.value != null || fedtax.value != '') {
         ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(removesign(fedytd.value)));
-        ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)) + parseFloat(removesign(fedytd.value)));
+        ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
     } else {
         ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)));
         ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
