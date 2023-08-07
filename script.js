@@ -65,9 +65,9 @@ function currenttotalCalc(e) {
         cg.value = currentTotal.value;
         med.value = USDollar.format(medCalc(value));
         ss.value = USDollar.format(ssCalc(value));
-        // fedtax.value = USDollar.format(fedCalc(value));
-        cd.value = USDollar.format(medCalc(value) + ssCalc(value));
-        cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value);
+        fedtax.value = USDollar.format(fedCalc(value));
+        cd.value = USDollar.format(medCalc(value) + ssCalc(value) + fedCalc(value));
+        cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value) - fedCalc(value);
         cnp.value = USDollar.format(cdvctt);
     }
 }
@@ -158,7 +158,11 @@ function Calc() {
     ss.value = USDollar.format(ssCalc(total));
     fedtax.value = USDollar.format(fedCalc(total));
     cg.value = USDollar.format(total);
-    cdv = medCalc(total) + ssCalc(total);
+    if (fedtax.value != null || fedtax.value != '') {
+        cdv = medCalc(total) + ssCalc(total) + fedCalc(total);
+    } else {
+        cdv = medCalc(total) + ssCalc(total);
+    }
     cd.value = USDollar.format(cdv);
     cnp.value = USDollar.format(total - cdv);
 }

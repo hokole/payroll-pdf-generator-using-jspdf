@@ -133,12 +133,12 @@ label {
 
 #employeraddress {
     height: 1in;
-    width: 292px;
+    width: 286px;
 }
 
 #employeeaddress {
     height: 1in;
-    width: 292px;
+    width: 286px;
 }
 
 table {
@@ -218,4 +218,10 @@ textarea {
 
 .buttondiv {
     margin: auto;
+}
+
+textarea {
+    font-family: Helvetica, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    padding: 6px;
 }
