@@ -34,6 +34,7 @@ const ytdded = document.getElementById('ytdded');
 const ytdnp = document.getElementById('ytdnp');
 const fedtax = document.getElementById('fedtax');
 const fedytd = document.getElementById('fedytd');
+var checkFedTax = document.getElementById("checkFedTax");
 
 rate.addEventListener("change", rateCalc);
 
@@ -51,10 +52,31 @@ fedytd.addEventListener('change', fedytdCalc);
 
 currentTotal.addEventListener('change', currenttotalCalc);
 
+checkFedTax.addEventListener('change', fedTaxCheckbox)
+
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
 });
+
+function fedTaxCheckbox() {
+    if (checkFedTax.checked == false) {
+        all();
+    } else {
+        all();
+    }
+}
+
+function all() {
+    currenttotalCalc();
+    rateCalc(e);
+    hoursCalc(e);
+    fedtaxCalc(e);
+    fedytdCalc(e);
+    ssytdCalc(e);
+    medytdCalc(e);
+    regytdCalc(e);
+}
 
 function currenttotalCalc(e) {
     let value = e.target.value;
@@ -158,10 +180,12 @@ function Calc() {
     ss.value = USDollar.format(ssCalc(total));
     fedtax.value = USDollar.format(fedCalc(total));
     cg.value = USDollar.format(total);
-    if (fedtax.value != null || fedtax.value != '') {
+
+    if (checkFedTax.checked == true) {
         cdv = medCalc(total) + ssCalc(total) + fedCalc(total);
     } else {
         cdv = medCalc(total) + ssCalc(total);
+        fedtax.value = null;
     }
     cd.value = USDollar.format(cdv);
     cnp.value = USDollar.format(total - cdv);
