@@ -52,31 +52,11 @@ fedytd.addEventListener('change', fedytdCalc);
 
 currentTotal.addEventListener('change', currenttotalCalc);
 
-checkFedTax.addEventListener('change', fedTaxCheckbox)
-
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
 });
 
-function fedTaxCheckbox() {
-    if (checkFedTax.checked == false) {
-        all();
-    } else {
-        all();
-    }
-}
-
-function all() {
-    currenttotalCalc();
-    rateCalc(e);
-    hoursCalc(e);
-    fedtaxCalc(e);
-    fedytdCalc(e);
-    ssytdCalc(e);
-    medytdCalc(e);
-    regytdCalc(e);
-}
 
 function currenttotalCalc(e) {
     let value = e.target.value;
@@ -133,8 +113,7 @@ function medytdCalc(e) {
     if (ssytd.value != null || ssytd.value != '') {
         deductCalc();
     } else if ((ssytd.value != null || ssytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
-        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
-        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+        ytdCalcWFed();
     }
 }
 
@@ -144,8 +123,7 @@ function ssytdCalc(e) {
     if (medytd.value != null || medytd.value != '') {
         deductCalc();
     } else if ((medytd.value != null || medytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
-        ytdded.value = parseFloat(medytd.value) + parseFloat(ssytd.value) + parseFloat(fedytd.value);
-        ytdnp.value = parseFloat(ytdgross.value) - parseFloat(ytdded.value);
+        ytdCalcWFed();
     }
 }
 
@@ -153,10 +131,14 @@ function fedytdCalc(e) {
     let value = e.target.value;
     fedytd.value = USDollar.format(parseFloat(value) + parseFloat(removesign(fedtax.value)));
     if ((medytd.value != null || medytd.value != '') && (ssytd.value != null || ssytd.value != '') && (fedytd.value != null || fedytd.value != '')) {
-        ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(fedytd.value));
-        ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
+        ytdCalcWFed();
     }
     deductCalc();
+}
+
+function ytdCalcWFed() {
+    ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(fedytd.value));
+    ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
 }
 
 function medCalc(e) {
@@ -186,17 +168,20 @@ function Calc() {
     } else {
         cdv = medCalc(total) + ssCalc(total);
         fedtax.value = null;
+        fedytd.value = null;
     }
     cd.value = USDollar.format(cdv);
     cnp.value = USDollar.format(total - cdv);
 }
 
 function deductCalc() {
-    if (fedtax.value != null || fedtax.value != '') {
-        ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(removesign(fedytd.value)));
-        ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
-    } else {
+    if (fedtax.value == null || fedtax.value == '') {
         ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)));
+        ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
+        
+        
+    } else {
+        ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)) + parseFloat(removesign(fedytd.value)));
         ytdnp.value = USDollar.format(parseFloat(removesign(ytdgross.value)) - parseFloat(removesign(ytdded.value)));
     }
 }
