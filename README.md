@@ -1,4 +1,5 @@
 # Pay Stub Generator
+https://hokocodes.github.io/payroll-pdf-generator-using-jspdf/
 
 ## Overview
 
@@ -22,7 +23,8 @@ The Pay Stub Generator is a web application designed for payroll and pay stub ge
 
 ## Usage
 
-1. Open the application in your web browser.
+1. Open the application in your web browser. 
+https://hokocodes.github.io/payroll-pdf-generator-using-jspdf/
 
 2. Input the necessary payroll details.
 
