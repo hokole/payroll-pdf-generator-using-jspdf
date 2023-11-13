@@ -57,7 +57,7 @@ let USDollar = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
-
+// CURRENT TOTAL BOX
 function currenttotalCalc(e) {
     let value = e.target.value;
     if (rate.value == 'SALARY') {
@@ -67,13 +67,23 @@ function currenttotalCalc(e) {
         cg.value = currentTotal.value;
         med.value = USDollar.format(medCalc(value));
         ss.value = USDollar.format(ssCalc(value));
-        fedtax.value = USDollar.format(fedCalc(value));
-        cd.value = USDollar.format(medCalc(value) + ssCalc(value) + fedCalc(value));
-        cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value) - fedCalc(value);
+        if (checkFedTax.checked) {
+            fedtax.value = USDollar.format(fedCalc(value));
+        } 
+        // cd is current deductions
+        if (fedtax.checked) {
+            cd.value = USDollar.format(medCalc(value) + ssCalc(value) + fedCalc(value));
+            cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value) - fedCalc(value);
+        } else {
+            cd.value = USDollar.format(medCalc(value) + ssCalc(value));
+            cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value);
+        }
+        
         cnp.value = USDollar.format(cdvctt);
     }
 }
 
+// RATE BOX
 function rateCalc(e) {
     let value = e.target.value; //get dollar amount
     if (value == parseFloat(value)) {
@@ -86,6 +96,7 @@ function rateCalc(e) {
 
 }
 
+// HOURS BOX
 function hoursCalc(e) {
     let value = e.target.value;
     if (parseFloat(value)) {
@@ -96,6 +107,7 @@ function hoursCalc(e) {
     }
 }
 
+//FED TAX BOX
 function fedtaxCalc(e) {
     let value = e.target.value;
     fedtax.value = USDollar.format(value);
@@ -156,6 +168,7 @@ function fedCalc(e) {
     return fed;
 }
 
+// CALCULATING CURRENT GROSS, CURRENT DEDUCTIONS AND CURRENT TOTAL
 function Calc() {
     currentTotal.value = USDollar.format(total);
     med.value = USDollar.format(medCalc(total));
@@ -163,17 +176,19 @@ function Calc() {
     fedtax.value = USDollar.format(fedCalc(total));
     cg.value = USDollar.format(total);
 
-    if (checkFedTax.checked == true) {
-        cdv = medCalc(total) + ssCalc(total) + fedCalc(total);
-    } else {
+    if (fedtax.value == null || fedtax.value == '') {
         cdv = medCalc(total) + ssCalc(total);
         fedtax.value = null;
         fedytd.value = null;
+        
+    } else {
+        cdv = medCalc(total) + ssCalc(total) + fedCalc(total);
     }
     cd.value = USDollar.format(cdv);
     cnp.value = USDollar.format(total - cdv);
 }
 
+// CALCULATING YEAR TO DATES
 function deductCalc() {
     if (fedtax.value == null || fedtax.value == '') {
         ytdded.value = USDollar.format(parseFloat(removesign(medytd.value)) + parseFloat(removesign(ssytd.value)));
