@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        margin: auto;
+        padding: 100px;
+        font-family: Helvetica, Verdana, Geneva, Tahoma, sans-serif;
+        width: 35%;
+      }
+
+      form {
+
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+        padding: 10px;
+        margin: auto;
+      }
+
+      label {
+        font-weight: bold;
+        float: right;
+      }
+
+      p {
+        margin: auto;
+      }
+
+      h1 {
+        margin: auto;
+        padding: 50px;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate EFTPS Payment</title>
+  </head>
+  <body>
+    <h1>Calculate EFTPS Payment!</h1>
+    <div>
+      <form>
+        <label>Input total wages here: </label>
+        <input type="text" id="wages" name="wages" />
+        <label>Fed Tax (Wages * 0.08): </label>
+        <p id="fedtax"></p>
+        <label>Taxable Social Security Wages (Wages * 0.124): </label>
+        <p id="ss"></p>
+        <label>Taxable medicare wages & tips (Wages * 0.029): </label>
+        <p id="med"></p>
+        <label>EFTPS Payment: </label>
+        <p id="eftpspayment"></p>
+      </form>
+      <p>
+        EFTPS payment is calculated by adding the federal tax and taxable social
+        security wages and medicare wages.
+      </p>
+    </div>
+
+    <script>
+      wages = document.getElementById("wages"); // wages input box
+      fedtax = document.getElementById("fedtax"); // fed tax paragraph element
+      ss = document.getElementById("ss"); // taxable social security wages paragraph element
+      med = document.getElementById("med"); // taxable medicare wages and tips paragraph element
+      pymnt = document.getElementById("eftpspayment"); // eftps payment calculation result
+
+      wages.addEventListener("change", Calc); // on change, changes paragraph elements to calculate results of eftps payment
+
+      function Calc(e) {
+        let value = e.target.value;
+        let wage = parseFloat(wages.value); // declare wages input box value to equal wage
+        ftax = wage * 0.08;
+        fedtax.innerText = ftax;
+        sstax = wage * 0.124;
+        ss.innerText = sstax;
+        mtax = wage * 0.029;
+        med.innerText = mtax;
+        pymnt.innerText = ftax + sstax + mtax;
+      }
+    </script>
+  </body>
+</html>
