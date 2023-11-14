@@ -10,7 +10,6 @@
       }
 
       form {
-
         display: grid;
         grid-template-columns: auto auto;
         gap: 10px;
@@ -18,7 +17,7 @@
         margin: auto;
       }
 
-      label {
+      form label {
         font-weight: bold;
         float: right;
       }
@@ -38,7 +37,14 @@
   </head>
   <body>
     <h1>Calculate EFTPS Payment!</h1>
-    <div>
+    <div> 
+      <label>Federal tax counted? Check if yes.</label>
+      <input
+        type="checkbox"
+        id="check"
+        name="checkFedTax"
+        value="Federal Tax"
+      />
       <form>
         <label>Input total wages here: </label>
         <input type="text" id="wages" name="wages" />
@@ -63,6 +69,7 @@
       ss = document.getElementById("ss"); // taxable social security wages paragraph element
       med = document.getElementById("med"); // taxable medicare wages and tips paragraph element
       pymnt = document.getElementById("eftpspayment"); // eftps payment calculation result
+      check = document.getElementById('check');
 
       wages.addEventListener("change", Calc); // on change, changes paragraph elements to calculate results of eftps payment
 
@@ -75,7 +82,12 @@
         ss.innerText = sstax;
         mtax = wage * 0.029;
         med.innerText = mtax;
-        pymnt.innerText = ftax + sstax + mtax;
+        if (check.checked) {
+          pymnt.innerText = ftax + sstax + mtax;
+        } else {
+          pymnt.innerText = sstax + mtax;
+        }
+        
       }
     </script>
   </body>
