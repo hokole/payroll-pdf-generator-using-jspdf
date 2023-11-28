@@ -69,9 +69,11 @@ function currenttotalCalc(e) {
         ss.value = USDollar.format(ssCalc(value));
         if (checkFedTax.checked) {
             fedtax.value = USDollar.format(fedCalc(value));
-        } 
+        } else {
+            fedtax.value = '';
+        }
         // cd is current deductions
-        if (fedtax.checked) {
+        if (checkFedTax.checked) {
             cd.value = USDollar.format(medCalc(value) + ssCalc(value) + fedCalc(value));
             cdvctt = parseFloat(value) - medCalc(value) - ssCalc(value) - fedCalc(value);
         } else {
@@ -173,7 +175,10 @@ function Calc() {
     currentTotal.value = USDollar.format(total);
     med.value = USDollar.format(medCalc(total));
     ss.value = USDollar.format(ssCalc(total));
-    fedtax.value = USDollar.format(fedCalc(total));
+    if (checkFedTax.checked) {
+        fedtax.value = USDollar.format(fedCalc(total));
+    }
+    
     cg.value = USDollar.format(total);
 
     if (fedtax.value == null || fedtax.value == '') {
