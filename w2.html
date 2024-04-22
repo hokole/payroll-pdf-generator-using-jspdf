@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        section {
+            grid-template-columns: auto auto;
+            display: grid;
+            justify-content: center;
+            margin-top: 150px;
+            grid-column-gap: 20px;
+            grid-row-gap: 20px;
+        }
+
+        .box {
+            border: 1px solid black;
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .box input {
+            width: 275px;
+            height: 30px;
+            border: 0;
+            background-color: aliceblue;
+        }
+
+        .box p {
+            border: 1px solid gray;
+            border-radius: 5px;
+            width: 25px;
+            display: flex;
+            justify-content: center;
+            height: 30px;
+            margin: 0;
+        }
+
+        .input {
+            display: flex;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .popuptext {
+            visibility: hidden;
+            width: 500px;
+            border: 1px solid black;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+        }
+
+        .showPopup {
+            visibility: visible;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate W2</title>
+</head>
+<body>
+    <h1>W2 Calculator</h1>
+    <section>
+        <div class="box">
+            <label for="Wages">
+            <b>1</b> Wages, tips and other comp
+            </label>
+            <div class="input">
+                <input type="text" id="wages" name="wages">
+                <div class="popup" onclick="popup()">
+                    <p>/</p>
+                    <span class="popuptext" id="popupwages"></span>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="box">
+            <label for="fedtax">
+            <b>2</b> Federal inc tax withheld
+            </label>
+            <div class="input">
+                <input type="text" id="fedtax" name="fedtax">
+                <p>/</p>
+            </div>
+            
+        </div>
+
+        <div class="box">
+            <label for="sswage">
+            <b>3</b> Social security wages
+            </label>
+            <div class="input">
+                <input type="text" id="sswage" name="sswage">
+                <p>/</p>
+            </div>
+            
+        </div>
+
+        <div class="box">
+            <label for="sstax">
+            <b>4</b> Social security tax withheld
+            </label>
+            <div class="input">
+                <input type="text" id="sstax" name="sstax">
+                <p>/</p>
+            </div>
+            
+        </div>
+
+        <div class="box">
+            <label for="medwage">
+            <b>3</b> Medicare wages and tips
+            </label>
+            <div class="input">
+                <input type="text" id="medwage" name="medwage">
+                <p>/</p>
+            </div>
+            
+        </div>
+
+        <div class="box">
+            <label for="medtax">
+            <b>4</b> Medicare tax withheld
+            </label>
+            <div class="input">
+                <input type="text" id="medtax" name="medtax">
+                <p>/</p>
+            </div>
+            
+        </div>
+
+        <div class="box">
+            <label for="sstips">
+            <b>4</b> Social security tips
+            </label>
+            <div class="input">
+                <input type="text" id="sstips" name="sstips">
+                <p>/</p>
+            </div>
+            
+        </div>
+
+    </section>
+    <script type="text/javascript" src="w2.js"></script>
+</body>
+</html>
